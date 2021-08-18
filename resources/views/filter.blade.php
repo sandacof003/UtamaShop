@@ -25,7 +25,7 @@
                         @csrf
                         <div class="form-group row">
                             <label for="cpu">Processor :</label>
-                            <select id="cpu" name="cpu" form="cpu">
+                            <select id="cpu" name="cpu">
                             <option value="kuat">Kuat</option>
                             <option value="cukup">Cukup</option>
                             <option value="lemah">Lemah</option>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="ram">Ram :</label>
-                            <select id="ram" name="ram" form="ram">
+                            <select id="ram" name="ram" >
                             <option value="kuat">Kuat</option>
                             <option value="cukup">Cukup</option>
                             <option value="lemah">Lemah</option>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="vga">VGA :</label>
-                            <select id="vga" name="vga" form="vga">
+                            <select id="vga" name="vga">
                             <option value="kuat">Kuat</option>
                             <option value="cukup">Cukup</option>
                             <option value="lemah">Lemah</option>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group row mb-0 justify-content-end">
                             <div class="col-md-6 offset-md-2">
-                                <a href="{{url('filter/cari')}}" class="btn btn-primary">CARI</a>
+                                <button type="submit"class="btn btn-primary">CARI</button>
                             </div>
                         </div>
                     </form>
