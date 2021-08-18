@@ -12,7 +12,7 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
        $user = User::where('id',Auth::user()->id)->first();

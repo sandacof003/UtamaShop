@@ -37,7 +37,7 @@
                             @foreach($pesanan_details as $pesanan_detail)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $pesanan_detail->barang->nama_barang }}</td>
+                                <td><a href="{{ url('pesan') }}/{{ $pesanan_detail->barang_id }}">{{ $pesanan_detail->barang->nama_barang }}</a></td>
                                 <td>{{ $pesanan_detail->barang->deskripsi }}</td>
                                 <td>{{ $pesanan_detail->jumlah }} unit</td>
                                 <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga) }}</td>

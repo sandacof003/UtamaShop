@@ -40,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -56,15 +56,36 @@
                                     $pesanan_utama = \App\Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
                                     if(!empty($pesanan_utama))
                                         {
-                                        $notif = \App\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count(); 
+                                        $notif = \App\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
                                     }
-                                    ?> 
-                                    <a class="nav-link" href="{{ url('check-out') }}">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        @if(!empty($notif))
-                                        <span class="badge badge-danger">{{ $notif }}</span>
-                                        @endif
-                                    </a>
+                                    ?>
+                                    <?php
+                                    $user = \App\User::where('id', Auth::User()->id)->first();
+                                    $user_role = $user->role_id;
+                                    ?>
+                                    @if ($user_role == 2)
+                                        <a class="nav-link" href="{{ url('check-out') }}">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            @if(!empty($notif))
+                                            <span class="badge badge-danger">{{ $notif }}</span>
+                                            @endif
+                                        </a>
+                                    @else
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            <i class="fa fa-bell"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="">
+                                                Test1
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                Tset2
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                test3
+                                            </a>
+                                        </div>
+                                    @endif
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -72,12 +93,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('profile') }}">
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="{{ url('history') }}">
-                                        History
-                                    </a>
+                                    @if (Auth::user()->role_id == 1)
+                                        <a class="dropdown-item" href="{{ url('admin/profile') }}">
+                                            Profile
+                                        </a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ url('profile') }}">
+                                            Profile
+                                        </a>
+                                    @endif
+                                    @if (Auth::user()->role_id == 1)
+                                        <a class="dropdown-item" href="{{ url('admin/history') }}">
+                                            History
+                                        </a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ url('history') }}">
+                                            History
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <a href="{{ url('filter') }}">Cari Sesuai Keinginan?</a>
     <div class="row justify-content-center">
         <div class="col-md-12 mb-5">
             <img src="{{ url('images/logo.jpg')}}" class="rounded mx-auto d-block" width="300" alt="">
